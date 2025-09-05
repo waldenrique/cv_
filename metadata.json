@@ -1,0 +1,5 @@
+{
+  "name": "Gerador de CV IA",
+  "description": "Um aplicativo para criar um currículo vitae profissional no padrão europeu com a ajuda da IA. O usuário preenche seus dados, a IA aprimora o texto e o currículo pode ser exportado como PDF.",
+  "requestFramePermissions": []
+}
