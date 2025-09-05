@@ -28,17 +28,17 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ cvData, onClose }) =
     setIsProcessing(true);
     setError(null);
 
-    // Debug: Log das variáveis de ambiente
-    console.log('STRIPE_PUBLISHABLE_KEY:', STRIPE_PUBLISHABLE_KEY);
-    console.log('STRIPE_PRICE_ID:', STRIPE_PRICE_ID);
-    console.log('import.meta.env:', import.meta.env);
-
     if (!STRIPE_PUBLISHABLE_KEY || !STRIPE_PRICE_ID) {
         console.error('Variáveis de ambiente não encontradas:', {
-            publishableKey: STRIPE_PUBLISHABLE_KEY,
-            priceId: STRIPE_PRICE_ID
+            publishableKey: !!STRIPE_PUBLISHABLE_KEY,
+            priceId: !!STRIPE_PRICE_ID
         });
-        setError(`A integração com o pagamento não está configurada corretamente. Verifique as variáveis de ambiente.`);
+        
+        let errorMsg = "Configuração de pagamento incompleta: ";
+        if (!STRIPE_PUBLISHABLE_KEY) errorMsg += "Chave pública do Stripe não encontrada. ";
+        if (!STRIPE_PRICE_ID) errorMsg += "ID do produto não encontrado.";
+        
+        setError(errorMsg);
         setIsProcessing(false);
         return;
     }
