@@ -10,6 +10,7 @@ import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { ConsentBanner } from './components/ConsentBanner';
 import { SparklesIcon } from './components/icons/SparklesIcon';
 import { ConsentDeclined } from './components/ConsentDeclined';
+import { EnvDebug } from './components/EnvDebug';
 
 const initialCVData: CVData = {
   personalDetails: {
@@ -203,6 +204,9 @@ const App: React.FC = () => {
       {showPrivacyPolicy && <PrivacyPolicy onClose={() => setShowPrivacyPolicy(false)} />}
       
       {showConsent && <ConsentBanner onAccept={handleAcceptConsent} onDecline={handleDeclineConsent} onPrivacyPolicyClick={() => setShowPrivacyPolicy(true)} />}
+
+      {/* Debug component - remover em produção */}
+      <EnvDebug />
 
     </div>
   );
